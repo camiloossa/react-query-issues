@@ -3,18 +3,18 @@ import { gitHubApi } from '../../api/gitHubApi';
 import { Issue } from '../interfaces';
 import { IssueComment } from '../components/IssueComment';
 
-const getIssueInfo = async(issueNumber: number): Promise<Issue> => {
+export const getIssueInfo = async(issueNumber: number): Promise<Issue> => {
     const { data } = await gitHubApi.get<Issue>(`/issues/${issueNumber}`);
     return data;
 }
 
-const getIssueComments = async(issueNumber: number): Promise<Issue[]> => {
+export const getIssueComments = async(issueNumber: number): Promise<Issue[]> => {
     const { data } = await gitHubApi.get<Issue[]>(`/issues/${issueNumber}/comments`);
     return data;
 }
 
 export const useIssue = ( issueNumber: number ) => {
-    
+
     const issueQuery = useQuery({
         queryKey: ['issue', issueNumber],
         queryFn: () => getIssueInfo(issueNumber),
