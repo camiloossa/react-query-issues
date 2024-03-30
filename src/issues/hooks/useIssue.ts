@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { gitHubApi } from '../../api/gitHubApi';
 import { Issue } from '../interfaces';
-import { IssueComment } from '../components/IssueComment';
 
 export const getIssueInfo = async(issueNumber: number): Promise<Issue> => {
     const { data } = await gitHubApi.get<Issue>(`/issues/${issueNumber}`);
